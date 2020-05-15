@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/textview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UrunEklemeActivity">
+
+    <Button
+        android:id="@+id/urunListeButon"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="217dp"
+        android:layout_marginBottom="38dp"
+        android:background="#FF9800"
+        android:backgroundTint="#FF9800"
+        android:drawableBottom="@mipmap/ekle"
+        tools:layout_editor_absoluteX="132dp"
+        tools:layout_editor_absoluteY="165dp" />
+
+    <Button
+        android:id="@+id/urunEkleButon"
+        android:layout_width="215dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginEnd="197dp"
+        android:layout_marginBottom="38dp"
+        android:background="#FF9800"
+        android:backgroundTint="#FF9800"
+        android:drawableBottom="@mipmap/liste" />
+
+    <ListView
+        android:id="@+id/listele"
+        android:layout_width="match_parent"
+        android:layout_height="364dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp" />
+
+    <ListView
+        android:id="@+id/listele2"
+        android:layout_width="wrap_content"
+        android:layout_height="255dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="1dp"
+        android:layout_marginBottom="96dp" />
+
+
+</RelativeLayout>

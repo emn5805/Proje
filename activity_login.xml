@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#848E81"
+    tools:context=".Login">
+
+    <TextView
+        android:id="@+id/LoginText"
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="183dp"
+        android:gravity="center"
+        android:text="Hoşgeldiniz!"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="204dp" />
+
+    <EditText
+        android:id="@+id/mail"
+        android:layout_width="280dp"
+        android:layout_height="42dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/login_text_arka"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Lütfen Mailinizi Giriniz..."
+        android:backgroundTint="#FFFFFF"
+        android:inputType="textEmailAddress" />
+
+    <EditText
+        android:id="@+id/şifre"
+        android:layout_width="280dp"
+        android:layout_height="42dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="168dp"
+        android:background="@drawable/login_text_arka"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Lütfen Şifrenizi Giriniz...."
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/GirişButon"
+        android:layout_width="220dp"
+        android:layout_height="35dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="94dp"
+        android:layout_marginBottom="117dp"
+        android:background="@drawable/login_buton"
+        android:text="Giriş" />
+
+    <Button
+        android:id="@+id/kayitButon"
+        android:layout_width="220dp"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="63dp"
+        android:background="@drawable/login_buton"
+
+        android:text="Kayıt ol" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="294dp"
+        android:layout_height="173dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        app:srcCompat="@drawable/log_resim" />
+
+</RelativeLayout>
