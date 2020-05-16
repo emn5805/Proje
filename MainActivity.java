@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    private class VeriGetir extends AsyncTask<Void, Void, Void> {
+    private class VeriGetir extends AsyncTask<Void, Void, Void> {// n11
 
         Bitmap bitmap;
 
@@ -272,18 +272,18 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private class VeriGotur extends AsyncTask<Void, Void, Void> {
+    private class VeriGotur extends AsyncTask<Void, Void, Void> { // Gitttigidiyor
 
-        Bitmap bitmap2;
+            Bitmap bitmap2;
 
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            diyalog = new ProgressDialog(MainActivity.this);
-            diyalog.setTitle("Ürün Adı");
-            diyalog.setMessage("Lütfen Bekleyin");
-            diyalog.setIndeterminate(false);
-            diyalog.show();
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+                diyalog = new ProgressDialog(MainActivity.this);
+                diyalog.setTitle("Ürün Adı");
+                diyalog.setMessage("Lütfen Bekleyin");
+                diyalog.setIndeterminate(false);
+                diyalog.show();
         }
 
 
@@ -295,6 +295,7 @@ public class MainActivity extends AppCompatActivity {
                 Document doc1 = Jsoup.connect(URL).get();
                 Elements urunAd2 = doc1.select("div.h1-container");
                 Elements urunAd3 = doc1.select("div#sp-price-container");
+                Elements urunid = doc1.select("span#DescriptionTabProductId");
                 /* Elements img = doc1.select("a.header-gg-logo.robot-header-logoContainer-logo");
                 String imgSrc = img.attr("2");
                 InputStream input = new java.net.URL(imgSrc).openStream();
@@ -304,14 +305,15 @@ public class MainActivity extends AppCompatActivity {
                 urun2.setBaslik2(urunAd2.text());
                 urun2.setFiyat2(urunAd3.text());
                 urun2.setUrl2(URL);
+                urun2.setId(urunid.text());
                 urun2.setKullanici2(mAuth.getUid());//giriş yapan kullanıc
 
 
                 System.out.println(urun2.getBaslik2());
                 final FirebaseDatabase database = FirebaseDatabase.getInstance();
-                final  DatabaseReference myRef = database.getReference("urunler").child("GittiGidiyor").child(mAuth.getUid());
+                final  DatabaseReference myRefUrunEkle = database.getReference("urunler").child("GittiGidiyor").child(mAuth.getUid());
           //      final DatabaseReference myRefUrunEkle = database.getReference("urunler").child("Userlar").child(mAuth.getUid());
-                Query urun2Query = myRef.orderByChild("baslik").equalTo(urun2.getBaslik2());
+                Query urunQuery = myRefUrunEkle.orderByChild("id").equalTo(urun2.getId());
 
 
 
@@ -320,8 +322,7 @@ public class MainActivity extends AppCompatActivity {
                 //Log.i("test",ref);
              //  myRef = myRef.child(mAuth.getUid()).child(ref);
               //  myRef.setValue(urun2);
-                final DatabaseReference finalMyRef = myRef;
-                urun2Query.addListenerForSingleValueEvent(new ValueEventListener() {
+                urunQuery.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if(dataSnapshot.hasChildren()) {
@@ -329,20 +330,20 @@ public class MainActivity extends AppCompatActivity {
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                 System.out.println(ds.getKey());
                                 String key1 = ds.getKey();
-                                Urun2 eskiUrun = ds.getValue(Urun2.class);
-                                System.out.println(key1 + eskiUrun.getBaslik2() + eskiUrun.getFiyat2());
-                                urun2.setEskiFiyat2(eskiUrun.getFiyat2());
-                                myRef.child(key1).setValue(urun2);
+                                Urun2 eskiUrun1 = ds.getValue(Urun2.class);
+                                System.out.println(key1 + eskiUrun1.getBaslik2() + eskiUrun1.getFiyat2());
+                                urun2.setEskiFiyat2(eskiUrun1.getFiyat2());
+                                myRefUrunEkle.child(key1).setValue(urun2);
                             }
                         }
                         else{
                             System.out.println("Kayıt yok, yeni kayıt eklenecek.");
-                            myRef.push().setValue(urun2);
+                            myRefUrunEkle.push().setValue(urun2);
                         }
                     }
 
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
                     }
                 });
@@ -379,6 +380,3 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
-
-
-
